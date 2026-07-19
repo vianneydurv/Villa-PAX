@@ -190,8 +190,16 @@
   .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.8rem); margin-top:14px;}
   .section-head p{margin-top:18px; font-size:1.02rem; color:#5a5145; max-width:56ch;}
 
-  .reveal{opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease;}
-  .reveal.is-visible{opacity:1; transform:translateY(0);}
+ .reveal{
+  opacity:1;
+  transform:none;
+  transition:opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal.is-visible{
+  opacity:1;
+  transform:translateY(0);
+}
 
   /* ---------- DECOUVRIR ---------- */
   #decouvrir{background:var(--stone);}
@@ -836,10 +844,27 @@
     navList.classList.remove('open');
   }));
 
+if ('IntersectionObserver' in window) {
+
   const io = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('is-visible'); });
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('is-visible');
+      }
+    });
   }, { threshold: 0.15 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    io.observe(el);
+  });
+
+} else {
+
+  document.querySelectorAll('.reveal').forEach(el => {
+    el.classList.add('is-visible');
+  });
+
+}
 
   document.getElementById('contactForm').addEventListener('submit', function(e){
     e.preventDefault();

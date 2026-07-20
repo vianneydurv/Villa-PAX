@@ -162,6 +162,17 @@
   .btn-ghost{border:1px solid rgba(245,240,228,0.4); color:var(--cream);}
   .btn-ghost:hover{border-color:var(--cream); background:rgba(245,240,228,0.08);}
 
+  @media (max-width:640px){
+    .hero-inner{padding:130px 0 60px; text-align:center;}
+    .hero-eyebrow{margin-bottom:16px; font-size:0.64rem;}
+    .hero h1{
+      font-size:clamp(1.9rem, 8.5vw, 2.6rem); max-width:100%; margin:0 auto;
+    }
+    .hero p.lede{font-size:0.95rem; max-width:34ch; margin:18px auto 0;}
+    .hero-cta{justify-content:center; margin-top:30px;}
+    .btn{font-size:0.7rem; padding:14px 20px;}
+  }
+
   .hero-scroll{
     position:absolute; right:32px; bottom:36px; z-index:2;
     font-family:var(--font-mono); font-size:0.65rem; color:var(--cream); opacity:0.7;
@@ -189,9 +200,9 @@
   .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.8rem); margin-top:14px;}
   .section-head p{margin-top:18px; font-size:1.02rem; color:#5a5145; max-width:56ch;}
 
-  /* Par défaut, tout le contenu est visible (aucune dépendance à JS pour être vu).
+  /* Par dÃ©faut, tout le contenu est visible (aucune dÃ©pendance Ã  JS pour Ãªtre vu).
      Le JS ajoute la classe .reveal-init pour activer l'animation d'apparition ;
-     si JS est absent ou échoue, le contenu reste simplement visible sans animation. */
+     si JS est absent ou Ã©choue, le contenu reste simplement visible sans animation. */
   .reveal{opacity:1; transform:none;}
   .reveal.reveal-init{opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease;}
   .reveal.reveal-init.is-visible{opacity:1; transform:translateY(0);}
@@ -206,7 +217,7 @@
     font-family:var(--font-mono); font-size:0.78rem; color:var(--forest);
     padding:10px 0; border-bottom:1px solid var(--line); display:flex; gap:10px; align-items:baseline;
   }
-  .amenities li::before{content:'—'; color:var(--brass);}
+  .amenities li::before{content:'â€”'; color:var(--brass);}
 
   /* ---------- PHOTO SYSTEM (hover caption) ---------- */
   .photo{
@@ -227,7 +238,7 @@
   .photo:hover .photo-caption, .photo:focus-within .photo-caption{transform:translateY(0);}
 
   /* Discover bento */
-  /* Discover mosaic — 2x2 tiles, each cross-fading between photos */
+  /* Discover mosaic â€” 2x2 tiles, each cross-fading between photos */
   .discover-mosaic{
     display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
     gap:14px; aspect-ratio:1/1; min-height:340px; max-width:460px;
@@ -243,8 +254,8 @@
   }
 
   /* ---------- THERMES CAROUSEL (modern banner, 3 slides) ----------
-     Par défaut (sans JS) : les 3 bandeaux sont empilés et tous visibles.
-     Avec JS : la classe .js-active bascule vers un carrousel défilant. */
+     Par dÃ©faut (sans JS) : les 3 bandeaux sont empilÃ©s et tous visibles.
+     Avec JS : la classe .js-active bascule vers un carrousel dÃ©filant. */
   .thermes-carousel{
     margin-top:64px; position:relative;
   }
@@ -277,7 +288,7 @@
     color:var(--cream); border-bottom:1px solid var(--brass); padding-bottom:4px; transition:opacity 0.2s ease;
   }
   .thermes-link:hover{opacity:0.75;}
-  /* Points et flèches : uniquement utiles (et affichés) en mode carrousel JS */
+  /* Points et flÃ¨ches : uniquement utiles (et affichÃ©s) en mode carrousel JS */
   .thermes-dots{display:none; position:absolute; z-index:2; bottom:22px; right:44px; gap:9px;}
   .thermes-carousel.js-active .thermes-dots{display:flex;}
   .thermes-dot{width:8px; height:8px; border-radius:50%; background:rgba(245,240,228,0.35); transition:background 0.3s ease, transform 0.3s ease;}
@@ -443,7 +454,7 @@
     color:rgba(245,240,228,0.45);
   }
 
-  /* Ajustements pour les pages secondaires (sans hero plein écran) */
+  /* Ajustements pour les pages secondaires (sans hero plein Ã©cran) */
   .page-banner{
     position:relative; min-height:46vh; display:flex; align-items:flex-end; overflow:hidden;
     background-size:cover; background-position:center;

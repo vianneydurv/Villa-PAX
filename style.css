@@ -163,7 +163,17 @@
   .btn-ghost:hover{border-color:var(--cream); background:rgba(245,240,228,0.08);}
 
   @media (max-width:640px){
-    .hero-inner{padding:130px 0 60px; text-align:center;}
+    .hero{min-height:auto; display:block;}
+    .hero-bg{position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;}
+    .hero-overlay{
+      position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;
+      background:linear-gradient(180deg, rgba(21,35,24,0.05) 0%, rgba(21,35,24,0.65) 100%);
+    }
+    .hero-inner{
+      position:relative; z-index:2; margin-top:44vh;
+      background:var(--forest-deep);
+      padding:34px 0 46px; text-align:center;
+    }
     .hero-eyebrow{margin-bottom:16px; font-size:0.64rem;}
     .hero h1{
       font-size:clamp(1.9rem, 8.5vw, 2.6rem); max-width:100%; margin:0 auto;
@@ -171,6 +181,7 @@
     .hero p.lede{font-size:0.95rem; max-width:34ch; margin:18px auto 0;}
     .hero-cta{justify-content:center; margin-top:30px;}
     .btn{font-size:0.7rem; padding:14px 20px;}
+    .hero-scroll{display:none;}
   }
 
   .hero-scroll{
@@ -312,11 +323,21 @@
     .thermes-arrow.next{right:12px;}
   }
   @media (max-width:640px){
-    .thermes-carousel.js-active{min-height:360px;}
-    .thermes-modern{min-height:360px;}
-    .thermes-content{padding:28px;}
-    .thermes-dome{width:56px; height:56px; top:18px; right:18px;}
-    .thermes-dots{right:28px; bottom:16px;}
+    .thermes-carousel.js-active{min-height:auto;}
+    .thermes-modern, .thermes-carousel.js-active .thermes-modern{
+      display:block; flex:none; min-height:auto; padding-top:34vh; position:relative;
+    }
+    .thermes-modern::before{
+      background:linear-gradient(180deg, rgba(21,35,24,0.05) 0%, rgba(21,35,24,0.5) 100%);
+    }
+    .thermes-dome{display:none;}
+    .thermes-content{
+      position:relative; z-index:1; max-width:100%;
+      background:var(--forest-deep); padding:24px 20px 30px;
+    }
+    .thermes-content h3{font-size:1.5rem;}
+    .thermes-carousel.js-active .thermes-arrow{top:17vh;}
+    .thermes-carousel.js-active .thermes-dots{top:calc(34vh - 26px); bottom:auto; right:20px;}
   }
 
   /* ---------- FLOOR PLAN ---------- */

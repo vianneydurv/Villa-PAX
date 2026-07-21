@@ -506,3 +506,8 @@
     z-index:150;
   }
 }
+/* ==== Correctif : bug de positionnement du menu mobile sur Safari iOS ==== */
+header, header.scrolled{
+  backdrop-filter:none !important;
+  -webkit-backdrop-filter:none !important;
+}

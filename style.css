@@ -498,3 +498,11 @@
   .page-banner-inner{position:relative; z-index:1; padding:150px 0 50px;}
   .page-banner-inner h1{color:var(--cream); font-size:clamp(2.2rem,5vw,3.4rem); font-weight:400;}
   .page-banner-inner .eyebrow{color:var(--sage);}
+/* ==== Correctif : fond du menu mobile déroulant ==== */
+@media (max-width:860px){
+  nav.main-nav ul{
+    background:var(--forest-deep) !important;
+    box-shadow:-8px 0 24px rgba(0,0,0,0.35);
+    z-index:150;
+  }
+}

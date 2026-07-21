@@ -95,6 +95,7 @@ try {
       thermesIndex = (i + thermesSlides.length) % thermesSlides.length;
       thermesTrack.style.transform = 'translateX(-' + (thermesIndex * 100) + '%)';
       thermesDots.forEach(function (dot, d) { dot.classList.toggle('active', d === thermesIndex); });
+      thermesSlides.forEach(function (slide, s) { slide.classList.toggle('active', s === thermesIndex); });
     };
     var startThermesTimer = function () {
       thermesTimer = setInterval(function () { goToThermesSlide(thermesIndex + 1); }, 10000);

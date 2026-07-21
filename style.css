@@ -163,7 +163,7 @@
   .btn-ghost:hover{border-color:var(--cream); background:rgba(245,240,228,0.08);}
 
   @media (max-width:640px){
-    .hero{min-height:auto; display:block;}
+    .hero{min-height:auto; display:flex; flex-direction:column;}
     .hero-bg{position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;}
     .hero-overlay{
       position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;
@@ -211,9 +211,9 @@
   .section-head h2{font-size:clamp(1.9rem, 3.6vw, 2.8rem); margin-top:14px;}
   .section-head p{margin-top:18px; font-size:1.02rem; color:#5a5145; max-width:56ch;}
 
-  /* Par dÃ©faut, tout le contenu est visible (aucune dÃ©pendance Ã  JS pour Ãªtre vu).
+  /* Par défaut, tout le contenu est visible (aucune dépendance à JS pour être vu).
      Le JS ajoute la classe .reveal-init pour activer l'animation d'apparition ;
-     si JS est absent ou Ã©choue, le contenu reste simplement visible sans animation. */
+     si JS est absent ou échoue, le contenu reste simplement visible sans animation. */
   .reveal{opacity:1; transform:none;}
   .reveal.reveal-init{opacity:0; transform:translateY(28px); transition:opacity 0.8s ease, transform 0.8s ease;}
   .reveal.reveal-init.is-visible{opacity:1; transform:translateY(0);}
@@ -228,7 +228,7 @@
     font-family:var(--font-mono); font-size:0.78rem; color:var(--forest);
     padding:10px 0; border-bottom:1px solid var(--line); display:flex; gap:10px; align-items:baseline;
   }
-  .amenities li::before{content:'â€”'; color:var(--brass);}
+  .amenities li::before{content:'—'; color:var(--brass);}
 
   /* ---------- PHOTO SYSTEM (hover caption) ---------- */
   .photo{
@@ -249,7 +249,7 @@
   .photo:hover .photo-caption, .photo:focus-within .photo-caption{transform:translateY(0);}
 
   /* Discover bento */
-  /* Discover mosaic â€” 2x2 tiles, each cross-fading between photos */
+  /* Discover mosaic — 2x2 tiles, each cross-fading between photos */
   .discover-mosaic{
     display:grid; grid-template-columns:1fr 1fr; grid-template-rows:1fr 1fr;
     gap:14px; aspect-ratio:1/1; min-height:340px; max-width:460px;
@@ -265,8 +265,8 @@
   }
 
   /* ---------- THERMES CAROUSEL (modern banner, 3 slides) ----------
-     Par dÃ©faut (sans JS) : les 3 bandeaux sont empilÃ©s et tous visibles.
-     Avec JS : la classe .js-active bascule vers un carrousel dÃ©filant. */
+     Par défaut (sans JS) : les 3 bandeaux sont empilés et tous visibles.
+     Avec JS : la classe .js-active bascule vers un carrousel défilant. */
   .thermes-carousel{
     margin-top:64px; position:relative;
   }
@@ -299,7 +299,7 @@
     color:var(--cream); border-bottom:1px solid var(--brass); padding-bottom:4px; transition:opacity 0.2s ease;
   }
   .thermes-link:hover{opacity:0.75;}
-  /* Points et flÃ¨ches : uniquement utiles (et affichÃ©s) en mode carrousel JS */
+  /* Points et flèches : uniquement utiles (et affichés) en mode carrousel JS */
   .thermes-dots{display:none; position:absolute; z-index:2; bottom:22px; right:44px; gap:9px;}
   .thermes-carousel.js-active .thermes-dots{display:flex;}
   .thermes-dot{width:8px; height:8px; border-radius:50%; background:rgba(245,240,228,0.35); transition:background 0.3s ease, transform 0.3s ease;}
@@ -338,6 +338,17 @@
     .thermes-content h3{font-size:1.5rem;}
     .thermes-carousel.js-active .thermes-arrow{top:17vh;}
     .thermes-carousel.js-active .thermes-dots{top:calc(34vh - 26px); bottom:auto; right:20px;}
+
+    /* Mécanisme simplifié : une seule diapositive visible à la fois, sans glissement horizontal */
+    .thermes-carousel.js-active .thermes-track{
+      transform:none !important; display:block; position:relative; height:auto;
+    }
+    .thermes-carousel.js-active .thermes-modern{
+      display:none; width:100%;
+    }
+    .thermes-carousel.js-active .thermes-modern.active{
+      display:block;
+    }
   }
 
   /* ---------- FLOOR PLAN ---------- */
@@ -475,7 +486,7 @@
     color:rgba(245,240,228,0.45);
   }
 
-  /* Ajustements pour les pages secondaires (sans hero plein Ã©cran) */
+  /* Ajustements pour les pages secondaires (sans hero plein écran) */
   .page-banner{
     position:relative; min-height:46vh; display:flex; align-items:flex-end; overflow:hidden;
     background-size:cover; background-position:center;

@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Réservation — Tarifs & Contact | Villa Pax</title>
+<title>Réservation &mdash; Tarifs & Contact | Villa Pax</title>
 <meta name="description" content="Grille tarifaire et formulaire de contact pour réserver votre séjour à la Villa Pax, La Bourboule.">
 <meta name="robots" content="index, follow">
 <meta name="theme-color" content="#22392A">
 <link rel="canonical" href="https://votre-nom-utilisateur.github.io/villa-pax/reservation.html">
 <meta property="og:type" content="website">
-<meta property="og:title" content="Réservation — Tarifs & Contact | Villa Pax">
+<meta property="og:title" content="Réservation &mdash; Tarifs & Contact | Villa Pax">
 <meta property="og:description" content="Grille tarifaire et formulaire de contact pour réserver votre séjour à la Villa Pax, La Bourboule.">
 <meta property="og:locale" content="fr_FR">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='16' fill='%2322392A'/%3E%3Ctext x='50' y='68' font-size='58' text-anchor='middle' fill='%23A9793F' font-family='Georgia,serif'%3EP%3C/text%3E%3C/svg%3E">
@@ -71,13 +71,13 @@
 
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <p>Il y a mille choses à faire aux alentours du Puy de Sancy — demandez-nous, nous connaissons la région comme notre poche.</p>
+        <p>Il y a mille choses à faire aux alentours du Puy de Sancy &mdash; demandez-nous, nous connaissons la région comme notre poche.</p>
         <p class="addr">Emmanuel et Alix</p>
       </div>
       <form class="reveal" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
         <input type="hidden" name="access_key" value="9550c714-f81e-414a-8367-931bacf3d5af">
-        <input type="hidden" name="subject" value="Nouvelle demande de réservation — Villa Pax">
-        <input type="hidden" name="from_name" value="Villa Pax — Formulaire de réservation">
+        <input type="hidden" name="subject" value="Nouvelle demande de réservation &mdash; Villa Pax">
+        <input type="hidden" name="from_name" value="Villa Pax &mdash; Formulaire de réservation">
         <div class="form-row">
           <div class="field">
             <label for="prenom">Prénom *</label>
@@ -88,9 +88,15 @@
             <input type="text" id="nom" name="nom">
           </div>
         </div>
-        <div class="field">
-          <label for="email">E-mail *</label>
-          <input type="email" id="email" name="email" required>
+        <div class="form-row">
+          <div class="field">
+            <label for="email">E-mail *</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="field">
+            <label for="telephone">Téléphone</label>
+            <input type="tel" id="telephone" name="telephone" placeholder="06 12 34 56 78">
+          </div>
         </div>
         <div class="field">
           <label for="message">Votre message</label>

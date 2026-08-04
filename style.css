@@ -100,11 +100,15 @@
   }
 
   @media (max-width:860px){
+    header, header.scrolled{
+      backdrop-filter:none; -webkit-backdrop-filter:none;
+    }
     nav.main-nav ul{
       position:fixed; inset:0 0 0 auto; width:78vw; max-width:320px;
       background:var(--forest-deep); flex-direction:column; gap:0;
       padding:100px 32px 32px; transform:translateX(100%);
       transition:transform 0.45s cubic-bezier(.7,0,.2,1);
+      z-index:150; box-shadow:-8px 0 24px rgba(0,0,0,0.35);
     }
     .nav-toggle-input:checked ~ .main-nav ul{transform:translateX(0);}
     nav.main-nav a{color:var(--cream); opacity:1; padding:16px 0; border-bottom:1px solid rgba(245,240,228,0.1); width:100%;}
@@ -163,14 +167,16 @@
   .btn-ghost:hover{border-color:var(--cream); background:rgba(245,240,228,0.08);}
 
   @media (max-width:640px){
-    .hero{min-height:auto; display:flex; flex-direction:column;}
-    .hero-bg{position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;}
+    .hero{min-height:auto; display:block; overflow:visible;}
+    .hero-bg{
+      position:relative; inset:auto; height:44vh; min-height:260px;
+      z-index:auto; overflow:hidden;
+    }
     .hero-overlay{
-      position:absolute; top:0; left:0; right:0; height:44vh; bottom:auto;
-      background:linear-gradient(180deg, rgba(21,35,24,0.05) 0%, rgba(21,35,24,0.65) 100%);
+      background:linear-gradient(180deg, rgba(21,35,24,0.05) 0%, rgba(21,35,24,0.6) 100%);
     }
     .hero-inner{
-      position:relative; z-index:2; margin-top:44vh;
+      position:relative; z-index:auto; margin-top:0;
       background:var(--forest-deep);
       padding:34px 0 46px; text-align:center;
     }
@@ -273,7 +279,11 @@
   .thermes-track{display:flex; flex-direction:column; gap:16px;}
   .thermes-modern{
     position:relative; flex:0 0 auto; min-height:440px; display:flex; align-items:flex-end;
-    background-size:cover; background-position:center; border-radius:8px; overflow:hidden;
+    border-radius:8px; overflow:hidden;
+  }
+  .thermes-bgimg{
+    position:absolute; inset:0; z-index:0;
+    background-size:cover; background-position:center;
   }
   .thermes-carousel.js-active{border-radius:8px; overflow:hidden; min-height:440px;}
   .thermes-carousel.js-active .thermes-track{
@@ -282,11 +292,11 @@
   }
   .thermes-carousel.js-active .thermes-modern{flex:0 0 100%; min-height:440px; border-radius:0;}
   .thermes-modern::before{
-    content:''; position:absolute; inset:0;
+    content:''; position:absolute; inset:0; z-index:1;
     background:linear-gradient(0deg, rgba(21,35,24,0.92) 0%, rgba(21,35,24,0.45) 48%, rgba(21,35,24,0.05) 75%);
   }
-  .thermes-dome{position:absolute; top:28px; right:28px; width:86px; height:86px; opacity:0.55; z-index:1;}
-  .thermes-content{position:relative; z-index:1; padding:44px; max-width:560px;}
+  .thermes-dome{position:absolute; top:28px; right:28px; width:86px; height:86px; opacity:0.55; z-index:2;}
+  .thermes-content{position:relative; z-index:2; padding:44px; max-width:560px;}
   .thermes-content .eyebrow{color:var(--sage);}
   .thermes-content h3{
     font-size:clamp(1.7rem,3vw,2.3rem); color:var(--cream); font-weight:400; margin:14px 0 16px;
@@ -325,19 +335,23 @@
   @media (max-width:640px){
     .thermes-carousel.js-active{min-height:auto;}
     .thermes-modern, .thermes-carousel.js-active .thermes-modern{
-      display:block; flex:none; min-height:auto; padding-top:34vh; position:relative;
+      display:block; flex:none; min-height:auto; position:relative; overflow:visible;
+    }
+    .thermes-bgimg{
+      position:relative; inset:auto; height:38vh; min-height:220px; z-index:auto; overflow:hidden;
     }
     .thermes-modern::before{
+      position:absolute; inset:0 0 auto 0; height:38vh;
       background:linear-gradient(180deg, rgba(21,35,24,0.05) 0%, rgba(21,35,24,0.5) 100%);
     }
     .thermes-dome{display:none;}
     .thermes-content{
-      position:relative; z-index:1; max-width:100%;
+      position:relative; z-index:auto; margin-top:0; max-width:100%;
       background:var(--forest-deep); padding:24px 20px 30px;
     }
     .thermes-content h3{font-size:1.5rem;}
-    .thermes-carousel.js-active .thermes-arrow{top:17vh;}
-    .thermes-carousel.js-active .thermes-dots{top:calc(34vh - 26px); bottom:auto; right:20px;}
+    .thermes-carousel.js-active .thermes-arrow{top:19vh;}
+    .thermes-carousel.js-active .thermes-dots{top:calc(38vh - 26px); bottom:auto; right:20px;}
 
     /* Mécanisme simplifié : une seule diapositive visible à la fois, sans glissement horizontal */
     .thermes-carousel.js-active .thermes-track{
@@ -470,7 +484,11 @@
   textarea{resize:vertical; min-height:90px;}
   .field{display:flex; flex-direction:column;}
   form button{align-self:flex-start; margin-top:8px; border:none; cursor:pointer;}
-  .form-note{font-family:var(--font-mono); font-size:0.68rem; color:#7a6f5f; margin-top:6px;}
+  .form-note{
+    display:block; font-family:var(--font-body); font-size:0.92rem; font-weight:500;
+    color:var(--forest); margin-top:14px; line-height:1.5;
+  }
+  .form-note:empty{margin-top:6px;}
 
   /* ---------- FOOTER ---------- */
   footer{background:var(--forest-deep); color:rgba(245,240,228,0.7); padding:60px 0 34px;}
@@ -498,16 +516,3 @@
   .page-banner-inner{position:relative; z-index:1; padding:150px 0 50px;}
   .page-banner-inner h1{color:var(--cream); font-size:clamp(2.2rem,5vw,3.4rem); font-weight:400;}
   .page-banner-inner .eyebrow{color:var(--sage);}
-/* ==== Correctif : fond du menu mobile déroulant ==== */
-@media (max-width:860px){
-  nav.main-nav ul{
-    background:var(--forest-deep) !important;
-    box-shadow:-8px 0 24px rgba(0,0,0,0.35);
-    z-index:150;
-  }
-}
-/* ==== Correctif : bug de positionnement du menu mobile sur Safari iOS ==== */
-header, header.scrolled{
-  backdrop-filter:none !important;
-  -webkit-backdrop-filter:none !important;
-}

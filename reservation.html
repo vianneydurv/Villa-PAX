@@ -74,7 +74,10 @@
         <p>Il y a mille choses à faire aux alentours du Puy de Sancy — demandez-nous, nous connaissons la région comme notre poche.</p>
         <p class="addr">Emmanuel et Alix</p>
       </div>
-      <form class="reveal" id="contactForm" action="mailto:reservation@villapax-labourboule.fr" method="POST" enctype="text/plain">
+      <form class="reveal" id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+        <input type="hidden" name="access_key" value="9550c714-f81e-414a-8367-931bacf3d5af">
+        <input type="hidden" name="subject" value="Nouvelle demande de réservation — Villa Pax">
+        <input type="hidden" name="from_name" value="Villa Pax — Formulaire de réservation">
         <div class="form-row">
           <div class="field">
             <label for="prenom">Prénom *</label>
@@ -93,8 +96,9 @@
           <label for="message">Votre message</label>
           <textarea id="message" name="message" placeholder="Dates envisagées, nombre de voyageurs, questions…"></textarea>
         </div>
+        <input type="checkbox" name="botcheck" style="display:none;">
         <button type="submit" class="btn btn-primary">Envoyer la demande</button>
-        <span class="form-note">Le formulaire ouvre votre messagerie — remplacez l'adresse dans le code par la vôtre, ou connectez un service comme Formspree pour un envoi direct.</span>
+        <span class="form-note" id="formStatus">Vos coordonnées ne seront utilisées que pour répondre à votre demande.</span>
       </form>
     </div>
   </div>

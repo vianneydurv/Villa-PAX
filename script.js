@@ -152,28 +152,49 @@ try {
   } catch (e2) { /* rien à faire de plus : .reveal est visible par défaut en CSS */ }
 }
 
-// 8. Formulaire de contact : ouvre le client mail avec un message pré-rempli.
-//    Sans JS (ou en cas d'erreur), le formulaire garde son action mailto native.
+// 8. Formulaire de contact : envoi direct via Web3Forms (sans recharger la page).
+//    Sans JS, le formulaire se soumet nativement vers Web3Forms (fonctionne aussi).
 try {
   var contactForm = document.getElementById('contactForm');
+  var formStatus = document.getElementById('formStatus');
   if (contactForm) {
     contactForm.addEventListener('submit', function (e) {
       try {
         e.preventDefault();
-        var prenomEl = document.getElementById('prenom');
-        var nomEl = document.getElementById('nom');
-        var emailEl = document.getElementById('email');
-        var messageEl = document.getElementById('message');
-        var prenom = prenomEl ? prenomEl.value : '';
-        var nom = nomEl ? nomEl.value : '';
-        var email = emailEl ? emailEl.value : '';
-        var message = messageEl ? messageEl.value : '';
-        var body = 'Prénom: ' + prenom + '\nNom: ' + nom + '\nEmail: ' + email + '\n\nMessage:\n' + message;
-        window.location.href = 'mailto:reservation@villapax-labourboule.fr?subject=' +
-          encodeURIComponent('Demande de réservation - Villa Pax') + '&body=' + encodeURIComponent(body);
+        var submitBtn = contactForm.querySelector('button[type="submit"]');
+        var originalLabel = submitBtn ? submitBtn.textContent : '';
+        if (submitBtn) { submitBtn.disabled = true; submitBtn.textContent = 'Envoi en cours…'; }
+        if (formStatus) { formStatus.textContent = ''; formStatus.style.color = ''; }
+
+        fetch(contactForm.action, {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(contactForm)
+        })
+          .then(function (response) { return response.json(); })
+          .then(function (data) {
+            if (data && data.success) {
+              contactForm.reset();
+              if (formStatus) {
+                formStatus.textContent = 'Merci ! Votre demande a bien été envoyée, nous vous répondrons rapidement.';
+                formStatus.style.color = 'var(--forest)';
+              }
+            } else {
+              throw new Error('Web3Forms error');
+            }
+          })
+          .catch(function () {
+            if (formStatus) {
+              formStatus.textContent = 'Une erreur est survenue. Merci de réessayer, ou écrivez-nous directement par email.';
+              formStatus.style.color = '#b33';
+            }
+          })
+          .finally(function () {
+            if (submitBtn) { submitBtn.disabled = false; submitBtn.textContent = originalLabel; }
+          });
       } catch (innerErr) {
-        // En cas de souci, on laisse le formulaire se soumettre nativement (action mailto du <form>)
+        // En cas de souci JS, le formulaire garde son action native vers Web3Forms (fonctionne sans JS aussi).
       }
     });
   }
-} catch (e) { /* le formulaire garde son action mailto native définie en HTML */ }
+} catch (e) { /* le formulaire garde son action native vers Web3Forms */ }
